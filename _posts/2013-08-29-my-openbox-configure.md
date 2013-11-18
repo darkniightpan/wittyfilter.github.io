@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Openbox个人配置"
+title: "Openbox 个人配置"
 description: ""
-category: Linux
+category: linux
 tags: [linux, openbox]
 ---
 {% include JB/setup %}
@@ -124,12 +124,3 @@ drop-down终端guake是对于我来说必不可少的程序～
 <https://wiki.archlinux.org>
 
   [这里]: www.box-look.org
-
-
-
-
-
-
-
-
-
