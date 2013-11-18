@@ -2,8 +2,8 @@
 layout: post
 title: "Aborting pelican, using jekyll"
 description: ""
-category: ""
-tags: []
+category: Trivia
+tags: [jekyll, pelican]
 ---
 {% include JB/setup %}
 
