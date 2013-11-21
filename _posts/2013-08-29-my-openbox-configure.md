@@ -2,17 +2,17 @@
 layout: post
 title: "Openbox 个人配置"
 description: ""
-category: linux
+category: 软件技术
 tags: [linux, openbox]
 ---
 {% include JB/setup %}
 
-找个地方记录一下自己Openbox配置的一些东西，with Archlinux
+记录一下自己Openbox配置，with Archlinux
 
 ---
 ###关于Openbox###
 
-openbox是一个轻量级，可定制性高的窗口管理器，Arch官方仓库就可以下载安装。
+openbox是一个轻量级，可定制性高的窗口管理器。
 安装完成后, 应该把默认的配置文件 rc.xml, menu.xml, 和 autostart 和environment复制到`~/.config/openbox`：
 
 	$ mkdir -p ~/.config/openbox
@@ -38,19 +38,19 @@ openbox是一个轻量级，可定制性高的窗口管理器，Arch官方仓库
     
     exec openbox-session
 startx即可启动Openbox。Openbox中的xdg-autostart需要pyxdg。
-如果有桌面环境的话，自带的登录管理器会话选择就比较方便啦。我使用了窗口管理器cdm，基于会话且超级轻量，在AUR仓库中有git版本可以安装。
+如果有桌面环境的话，自带的登录管理器会话选择就比较方便。推荐cdm，基于会话且轻量。
 
 ---
 ###配置Openbox###
 ####首选项####
 配置文件于`~/.config/openbox/rc.xml`，自带有注释。图形化界面的程序可以使用Obconf。
 ####菜单####
-菜单文件`~/.config/openbox/menu.xml`，可手动编辑，但我使用的是mmaker自动生成。
+菜单文件`~/.config/openbox/menu.xml`，可手动编辑，推荐使用mmaker自动生成。
     
     $ mmaker -vf Openbox3       #-f选项覆盖之前的菜单
 基于GUI的菜单编辑可以使用obmenu。
 ####自启动####
-自启动程序脚本位于`~/.config/openbox/autostart`,Openbox也会启动在`/etc/xdg/autostart`中的所有的*.desktop文件。我的自启动脚本如下：
+自启动程序脚本位于`~/.config/openbox/autostart`,Openbox也会启动在`/etc/xdg/autostart`中的所有的*.desktop文件。本人自启动脚本：
 
 	xbacklight -set 0
 	fcitx &
@@ -61,20 +61,20 @@ startx即可启动Openbox。Openbox中的xdg-autostart需要pyxdg。
 	volumeicon &
 	batti &
 
-xbacklight调整背光。
+xbacklight调整背光，主要是为了省电。
 ####主题和外观####
-安装openbox-themes可获得丰富的主题，我使用的主题是numix。可以在[这里]找到更多主题，然后用Obconf安装。
-gtk主题可以通过安装gtk-theme-switch控制，我使用的主题依然是numix，可以在AUR中找到。具体的主题配置在`~/.gtkrc-2.0`。
-图标我使用的是faenza，可以安装faience-icon-theme获得，然后编辑`~/.gtkrc-2.0`，添加：
+安装openbox-themes可获得丰富的主题，推荐主题numix。可以在[这里]找到更多主题，然后用Obconf安装。
+gtk主题可以通过安装gtk-theme-switch控制，依然推荐numix。具体的主题配置在`~/.gtkrc-2.0`。
+图标推荐faenza，可以安装faience-icon-theme获得，然后编辑`~/.gtkrc-2.0`，添加：
 
     gtk-icon-theme-name = "Faenza"
 ####文件关联####
-从仓库安装perl-file-mimeinfo，调用 mimeopen 类似这样:
+从仓库安装perl-file-mimeinfo，调用mimeopen类似这样:
     
     $ mimeopen -d /path/to/file
 会提示用哪个程序来打开 /path/to/file。
 ####音量控制####
-使用alsamixer可以全局控制。对于快捷键的绑定，由于我有媒体控制的功能键(Fn + F11/F12)，因此需要修改rc.xml，添加：
+使用alsamixer可以全局控制。对于快捷键的绑定，如媒体控制功能键，需要修改rc.xml，添加：
 
     <keybind key="XF86AudioRaiseVolume">
      <action name="Execute">
@@ -95,18 +95,18 @@ gtk主题可以通过安装gtk-theme-switch控制，我使用的主题依然是n
 ---    
 ###一些应用程序###
 ####图片查看####
-我用的是feh。feh也可以用来设定桌面背景：
+推荐轻量的feh。feh也可以用来设定桌面背景：
     
     $ feh --bg-scale /path/to/picture
 ####面板####
-我用的是tint2，配置可以使用tintwizard程序。最好安装AUR里的tint2-svn，有更多新特性可以使用。
-托盘需要显示电源和音量控制，因此我安装了batti和volumeicon
+推荐tint2，配置可以使用tintwizard程序。最好安装tint2-svn，有更多新特性可以使用。
+托盘需要显示电源和音量控制，推荐batti和volumeicon
 ####网络####
-我用wicd，systemd自启动，禁用其他网络的systemd。
+推荐wicd，systemd自启动，禁用其他网络的systemd，networkmanager貌似不可正常显示通知。
 ####文件管理器####
-spacefm是个不错的选择，虽然功能上和nautilus与dolphin比起来差太多了......
+spacefm是个不错的选择，虽然功能上和nautilus与dolphin比起来差太多了。自动挂载windows硬盘请用ntfs-config。
 ####应用程序启动器####
-我用dmenu，Alt+F2调用。
+推荐dmenu。
 ####其他####
 要想使得窗口有阴影特效，可以这样：
     
@@ -117,8 +117,9 @@ spacefm是个不错的选择，虽然功能上和nautilus与dolphin比起来差�
     export QT_IM_MODULE=fcitx
     export XMODIFIERS="@im=fcitx"
 
-drop-down终端guake是对于我来说必不可少的程序～
+drop-down终端推荐用guake
 
+以上
 ---
 ###参考###
 <https://wiki.archlinux.org>
