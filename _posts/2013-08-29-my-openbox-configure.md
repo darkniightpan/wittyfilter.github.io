@@ -121,7 +121,9 @@ drop-down终端推荐用guake
 
 以上
 ---
+
 ###参考###
+
 <https://wiki.archlinux.org>
 
   [这里]: www.box-look.org
